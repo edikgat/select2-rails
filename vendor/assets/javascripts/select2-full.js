@@ -4315,7 +4315,7 @@ S2.define('select2/dropdown/attachBody',[
 
   AttachBody.prototype._resizeDropdown = function () {
     var css = {
-      width: this.$container.outerWidth(false) + 'px'
+        width: this.$container.get(0).getBoundingClientRect().width + 'px'
     };
 
     if (this.options.get('dropdownAutoWidth')) {

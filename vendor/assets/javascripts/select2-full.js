@@ -1620,6 +1620,11 @@ S2.define('select2/selection/multiple',[
           originalEvent: evt,
           data: data
         });
+
+        self.trigger('options:removed', {
+          originalEvent: evt,
+          data: data
+        });
       }
     );
   };
@@ -4133,6 +4138,11 @@ S2.define('select2/dropdown/attachBody',[
     container.on('open', function () {
       self._showDropdown();
       self._attachPositioningHandler(container);
+
+      container.on('options:removed', function () {
+        self._positionDropdown();
+        self._resizeDropdown();
+      });
 
       if (!setupResultsEvents) {
         setupResultsEvents = true;

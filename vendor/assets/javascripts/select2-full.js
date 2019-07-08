@@ -1038,6 +1038,11 @@ S2.define('select2/results',[
       if(!(self.options.get('multiple') && !self.options.get('closeOnSelect'))) {
         self.highlightFirstItem();
       }
+
+      self.trigger('options:changed', {
+        originalEvent: null,
+        data: null
+      });
     });
 
     container.on('unselect', function () {
@@ -1621,7 +1626,7 @@ S2.define('select2/selection/multiple',[
           data: data
         });
 
-        self.trigger('options:removed', {
+        self.trigger('options:changed', {
           originalEvent: evt,
           data: data
         });
@@ -4139,7 +4144,7 @@ S2.define('select2/dropdown/attachBody',[
       self._showDropdown();
       self._attachPositioningHandler(container);
 
-      container.on('options:removed', function () {
+      container.on('options:changed', function () {
         self._positionDropdown();
         self._resizeDropdown();
       });
